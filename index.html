@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CentralCee - Study Timetable</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1 class="logo">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+                    </svg>
+                    <b>CentralCee</b>
+                </h1>
+                <div class="header-info">
+                 
+                    <div class="profile-section">
+                    </div>
+                    <span class="current-day">Day <span id="currentDay">1</span> of 16</span>
+                    <button class="btn-settings" id="settingsBtn" title="Settings">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97 0-.33-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65A.506.506 0 0 0 14 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1 0 .33.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.66z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="current-session-card">
+                <div class="session-header">
+                    <h2>Current Session</h2>
+                    <div class="timer" id="timer">00:00:00</div>
+                </div>
+                <div class="session-details" id="currentSession">
+                    <div class="session-info">
+                        <h3 id="sessionTitle">No active session</h3>
+                        <p id="sessionCode">---</p>
+                        <p id="sessionTime">---</p>
+                    </div>
+                    <div class="session-actions">
+                        <button class="btn-primary" id="watchLectureBtn" disabled>
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                            Watch Lecture
+                        </button>
+                        <button class="btn-secondary" id="alarmToggle">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/>
+                            </svg>
+                            Alarm: ON
+                        </button>
+                    </div>
+                </div>
+
+                    <div class="progress-fill" id="progressBar"></div>
+                </div>
+            </div>
+
+            <div class="day-selector">
+                <button class="day-nav" id="prevDay" title="Previous Day">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                    </svg>
+                </button>
+                <div class="day-tabs" id="dayTabs"></div>
+                <button class="day-nav" id="nextDay" title="Next Day">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="timetable-container">
+                <h2 class="section-title">Today's Schedule</h2>
+                <div class="timetable" id="timetable"></div>
+            </div>
+
+            <div class="units-overview">
+                <h2 class="section-title">All Units</h2>
+                <div class="units-grid" id="unitsGrid"></div>
+            </div>
+        </main>
+    </div>
+
+    <div class="modal" id="settingsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Settings</h2>
+                <button class="modal-close" id="closeModal">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                 Theme toggle 
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h3>Theme</h3>
+                        <p>Switch between dark and light mode</p>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="themeToggle">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                 Custom alarm sound upload 
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h3>Custom Alarm Sound</h3>
+                        <p>Upload your own alarm sound</p>
+                    </div>
+                    <div class="file-upload">
+                        <input type="file" id="alarmUpload" accept="audio/*" hidden>
+                        <button class="btn-secondary" onclick="document.getElementById('alarmUpload').click()">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/>
+                            </svg>
+                            Upload Sound
+                        </button>
+                        <span id="uploadStatus" class="upload-status"></span>
+                    </div>
+                </div>
+
+                 Reset progress button 
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h3>Reset Progress</h3>
+                        <p>Reset all session completions and start fresh</p>
+                    </div>
+                    <button class="btn-danger" id="resetProgress">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+                        </svg>
+                        Reset All
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <audio id="alarmSound" preload="auto"></audio>
+    <script src="script.js"></script>
+</body>
+</html>
