@@ -69,7 +69,9 @@ body {
   top: 0;
   z-index: 100;
 }
-
+.timetable-container {
+    margin: 20px;
+}
 .header-content {
   display: flex;
   justify-content: space-between;
@@ -717,6 +719,7 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
 
 
 
