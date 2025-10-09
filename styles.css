@@ -70,7 +70,11 @@ body {
   z-index: 100;
 }
 .timetable-container {
-    margin: 20px;
+    margin: 7px;
+  .days-buttons {
+    margin-bottom: 16px; /* Adjust as needed */
+}
+
 }
 .header-content {
   display: flex;
@@ -719,6 +723,7 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
 
 
 
