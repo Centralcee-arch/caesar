@@ -183,7 +183,8 @@ body {
 .session-info p {
   font-size: 14px;
   color: var(--text-secondary);
-  margin-bottom: 4px;
+  margin: 4px;
+  
 }
 
 .session-actions {
@@ -714,4 +715,5 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
 
